@@ -5,13 +5,13 @@ from slackclient import SlackClient
 slack_client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
 
 def get_user(userid):
-        api_call = slack_client.api_call(
+    """get real name from user info"""        
+    api_call = slack_client.api_call(
                      "users.info",
                       user=userid)
-        if api_call.get('ok'):
-            # retrieve all users so we can find our bot
-            user =  api_call.get('user')
-            return user.get('real_name')
+    if api_call.get('ok'):
+        user =  api_call.get('user')
+        return user.get('real_name')
 
 # Public
 print 'Get Public Channels...'
